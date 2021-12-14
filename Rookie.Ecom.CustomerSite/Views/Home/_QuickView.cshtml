@@ -1,0 +1,55 @@
+﻿@model Rookie.Ecom.Contracts.Dtos.ProductListDto
+@await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "" })
+<div class="modal-body">
+    <div class="quick_view">
+        @if (Model != null)
+        {
+
+
+            <div class="row">
+                <div class="col-md-6 product_img">
+                    <img src="@(Model.ImagePath ?? "/uploads/ProductImages/noproductimage.png")" class="img-responsive">
+                    @*<img src="@Model.ImagePath" class="img-responsive">*@
+
+                </div>
+                <div class="col-md-6 product_content">
+                    <h4> <span>@Model.Name</span></h4>
+                    <hr />
+                    <div class="rating">
+                        @await Html.PartialAsync("_ViewStart"
+            , new StrarRating { Startpoint = Model.AverageRating, isDisable = true, data_step = 0.1, size = "xs" })
+                        
+                        
+                        (@Model.ProductComments bình luận)
+                    </div>
+                    <p> -@Model.Description</p>
+                    <h3 class="cost">
+                        @Model.FinalPrice VNĐ<small class="pre-cost"> <del>@Model.Price VNĐ</del></small>
+                    </h3>
+
+                    <div class="space-ten"></div>
+                    <div class="btn-ground">
+                        @*<a asp-controller="Home" asp-action="AddToCart" asp-route-product="@Model.Id" class="btn btn-primary">Thêm vào giỏ</a>*@
+                        @*<a data-toggle="modal" asp-controller="Home" asp-action="AddToCart" asp-route-product="@Model.Id" data-target="#modal-popUP" class="btn btn-primary">Thêm vào giỏ</a>*@
+                        <a asp-controller="Home" asp-action="ProductDetails" asp-route-product="@Model.Id" class="btn btn-info">Thêm thông tin</a>
+                    </div>
+                </div>
+            </div>}
+    </div>
+</div>
+<style>
+
+    .product_view .modal-dialog {
+        max-width: 800px;
+        width: 100%;
+    }
+
+    .pre-cost {
+        text-decoration: line-through;
+        color: #a5a5a5;
+    }
+
+    .space-ten {
+        padding: 20px 0;
+    }
+</style>

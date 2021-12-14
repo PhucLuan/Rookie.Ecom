@@ -1,0 +1,12 @@
+﻿@model System.Collections.Generic.List<Rookie.Ecom.Contracts.Dtos.CategoryDto>
+
+
+
+
+@foreach (var item in Model)
+{
+    <li><a asp-controller="Home" asp-action="Product" asp-route-Category="@item.Id">@item.Name</a></li>
+
+    @await Component.InvokeAsync("GetHeaderMainMenu", new { categoryId = item.Id })
+}
+

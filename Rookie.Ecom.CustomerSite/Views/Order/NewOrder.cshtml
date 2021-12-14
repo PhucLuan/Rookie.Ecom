@@ -1,0 +1,179 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model Rookie.Ecom.Contracts.Dtos.Public.NewOrderDto
+@{
+    ViewData["Title"] = "New Order";
+    Layout = "_Layout";
+}
+<link href="~/css/public/fixedTable.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-fixed">
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th class="text-center">Giá</th>
+                        <th class="text-center">Tổng</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var product = Model.OrderDetailsList.ToList();
+                        for (int i = 0; i < product.Count; i++)
+                        {
+                            <tr>
+                                <td class="col-sm-8 col-md-6">
+                                    <div class="media">
+                                        <a class="thumbnail pull-left" href="#"> <img class="media-object" src="@product[i].ImagePath" style="width: 72px; height: 72px;"> </a>
+                                        <div class="media-body" style="padding-left: 10px;">
+                                            <h4 class="media-heading"><a asp-controller="Home" asp-action="ProductDetails" asp-route-product="@product[i].ProductId">@product[i].ProductName</a></h4>
+                                            <h5 class="media-heading"> by <a href="#">@product[i].BrandName</a></h5>
+
+                                            @if (product[i].Stock > 0)
+                                            {
+                                                <span> Trạng thái: </span><span class="text-success">
+                                                    <strong>Còn hàng</strong>
+
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span> Trạng thái: </span><span class="text-danger">
+                                                    <strong>Hết hàng</strong>
+
+                                                </span>
+                                            }
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="col-sm-1 col-md-1" style="text-align: center">
+                                    @product[i].Quantity
+                                </td>
+                                <td class="col-sm-1 col-md-1 text-center"><strong class="price">@product[i].FinalPrice</strong></td>
+                                <td class="col-sm-1 col-md-1 text-center"><strong class="total">@(product[i].FinalPrice* product[i].Quantity)</strong></td>
+
+                            </tr>
+                        }
+                    }
+
+                    <tr>
+                        <td>
+                            <label>Tổng cộng: </label>
+                            <label class="grantotal">@HttpContextAccessor.HttpContext.Session.GetInt32("TotalPrice")</label>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <form asp-action="NewOrder" method="post" class="form-horizontal">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+            <div class="form-group">
+                <label asp-for="UserAdressId" class="col-md-2 control-label">Địa chỉ giao hàng</label>
+                <div class="col-md-5">
+                    <select asp-for="UserAdressId" asp-items="@ViewBag.UserAddress" class="form-control">
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <span asp-validation-for="UserAdressId" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PaymentMethod" class="col-md-2 control-label">Hình thức thanh toán</label>
+                <div class="col-md-5">
+                    <input type="text" asp-for="PaymentMethod" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Remarks" class="col-md-2 control-label">Nhận xét</label>
+                <div class="col-md-5">
+                    <textarea asp-for="Remarks" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="col-md-2">
+                    <span asp-validation-for="Remarks" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-5">
+                    <input type="submit" value="Mua ngay" class="btn btn-info" />
+                </div>
+                <div class="col-md-2">
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@*<script type="text/javascript">
+
+        $(document).ready(function() {
+
+            $("#CountryId").change(function() {
+                $("#CityId").empty();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("GetCity", "Location")',
+                    dataType: 'json',
+                    data: { id: $("#CountryId").val() },
+
+                    success: function(states) {
+
+                        $.each(states,
+                            function(i, items) {
+                                console.log(items);
+                                $("#CityId").append('<option value="' + items.value + '">' + items.text + '</option>');
+
+                            });
+                    },
+                    error: function(ex) {
+                        alert('Failed. ' + ex);
+                    }
+                });
+                return false;
+            });
+
+            $("#CityId").change(function() {
+                $("#LocationId").empty();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("GetLocation", "Location")',
+                    dataType: 'json',
+                    data: { id: $("#CityId").val() },
+
+                    success: function(states) {
+
+                        $.each(states,
+                            function(i, items) {
+                                console.log(items);
+                                $("#LocationId").append('<option value="' + items.value + '">' + items.text + '</option>');
+
+                            });
+                    },
+                    error: function(ex) {
+                        alert('Failed. ' + ex);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>*@

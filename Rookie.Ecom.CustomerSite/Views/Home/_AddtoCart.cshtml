@@ -1,0 +1,95 @@
+﻿@model Rookie.Ecom.Contracts.Dtos.Public.CartItem
+
+@if (!Context.User.Identity.IsAuthenticated)
+{
+    <div class="modal-body modal-body-sub_agile">
+        <div class="col-md-8 modal_body_left modal_body_left1">
+            <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
+            <a id="createModel" asp-controller="Users" asp-action="Login">
+                <input type="submit" value="Sign In with Id4">
+            </a>
+            <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
+                <li>
+                    <a href="#" class="facebook">
+                        <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                        <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="twitter">
+                        <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                        <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="instagram">
+                        <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                        <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="pinterest">
+                        <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+                        <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+                    </a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+            <p><a href="#" data-toggle="modal" data-target="#myModal2"></a></p>
+            <p><a asp-controller="Users" asp-action="SignUpRedirect">Don't have an account?</a></p>
+
+        </div>
+        <div class="col-md-4 modal_body_right modal_body_right1">
+            <img src="https://images.unsplash.com/photo-1520975867597-0af37a22e31e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80" alt=" " />
+        </div>
+        <div class="clearfix"></div>
+    </div>
+}
+else
+{
+    <form asp-action="AddToCart" id="frmBrand">
+        <div class="form-horizontal">
+            @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Cart" })
+            <hr />
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            <input type="hidden" asp-for="ProductName" />
+            <input type="hidden" asp-for="ProductId" />
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Sản phẩm</label>
+                <div class="col-md-4">
+                    <label>Số lượng</label>
+                </div>
+                <label class="col-md-2 control-label">Tổng</label>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">@Model.ProductName</label>
+                <div class="col-md-5">
+                    <input id="quantity" asp-for="Quantity" class="form-control" autofocus="" />
+                </div>
+                <div class="col-md-2">
+                    <input type="hidden" id="price" value="@Model.FinalPrice" />
+                    <input type="hidden" id="finalPrice" asp-for="FinalPrice" />
+                    <label id="total">@Model.FinalPrice</label>
+                </div>
+            </div>
+
+        </div>
+        @await Html.PartialAsync("_ModalFooter", new ModalFooter { SubmitButtonText = "Add To Cart", SubmitButtonClass = "btn-add-to-cart" })
+    </form>
+}
+<script>
+    $.validator.unobtrusive.parse("#frmBrand");
+</script>
+<script>
+    $(document).ready(function () {
+        var qty = $("#quantity");
+        qty.keyup(function () {
+            var total = isNaN(parseInt(qty.val() * $("#price").val())) ? 0 : (qty.val() * $("#price").val())
+            $("#finalPrice").val(total);
+            document.getElementById('total').innerHTML = total;
+        });
+    });
+</script>

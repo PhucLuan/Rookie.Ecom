@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Rookie.Ecom.IdentityServer.ViewModels.UsersViewModel
+
+<div class="login-page">
+    <div class="lead">
+        <h1>SignUp</h1>
+        <p>Choose how to login</p>
+    </div>
+
+    <partial name="_ValidationSummary" />
+
+    <div class="row">
+
+            @*<div class="col-sm-6">*@
+        <div class="card" style="
+                                width: 50%;
+                                margin: 0 auto;
+                            ">
+            <div class="card-header">
+                <h2>Local Account</h2>
+            </div>
+
+            <div class="card-body">
+                <form asp-route="SignUp">
+                    <div class="form-group">
+                        <label asp-for="Name" class="col-md-3 control-label">Tên</label>
+                        <div class="col-md-12">
+                            <input asp-for="Name" class="form-control" autofocus />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="UserName" class="col-md-3 control-label">Tên tài khoản</label>
+                        <div class="col-md-12">
+                            <input asp-for="UserName" class="form-control" autofocus />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Email" class="col-md-3 control-label"></label>
+                        <div class="col-md-12">
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Password" class="col-md-3 control-label">Mật khẩu</label>
+                        <div class="col-md-12">
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword" class="col-md-3 control-label">Xác nhận mật khẩu</label>
+                        <div class="col-md-12">
+                            <input asp-for="ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Contact" class="col-md-3 control-label">Số điện thoại</label>
+                        <div class="col-md-12">
+                            <input asp-for="Contact" class="form-control" />
+                            <span asp-validation-for="Contact" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="DateOfBirth" class="col-md-3 control-label">Ngày sinh</label>
+                        <div class="col-md-12">
+                            <input asp-for="DateOfBirth" id="dateofBirth" class="form-control datepicker" />
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Gender" class="col-md-3 control-label">Giới tính</label>
+                        <div class="col-md-12">
+                            <select asp-for="Gender" class="form-control">
+                                <option selected value="-1">--Select--</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Address" class="col-md-3 control-label">Địa chỉ</label>
+                        <div class="col-md-12">
+                            <textarea asp-for="Address" class="form-control"></textarea>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <input type="submit" value="Đăng ký" class="btn btn-success" />
+                    <button class="btn btn-secondary" name="button" value="cancel">Cancel</button>
+                </form>
+            </div>
+        </div>
+            @*</div>*@
+    </div>
+</div>

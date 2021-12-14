@@ -1,0 +1,13 @@
+﻿@model Rookie.Ecom.Contracts.Dtos.Public.CartItem
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<form asp-action="RemoveItemFromCart" role="form">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Remove Product" })
+    <input id="ProductId" type="hidden" asp-for="@Model.ProductId" />
+    <div class="modal-body form-horizontal">
+        Are you want to remove <strong>@Model.ProductName</strong>
+    </div>
+
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { SubmitButtonText = "Remove", SubmitButtonClass = "btn-discard" })
+</form>

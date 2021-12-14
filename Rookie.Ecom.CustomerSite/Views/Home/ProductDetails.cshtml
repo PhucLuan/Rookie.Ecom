@@ -1,0 +1,329 @@
+﻿@model Rookie.Ecom.Contracts.Dtos.ProductListDto
+@{
+    ViewData["Title"] = "ProductDetails";
+    Layout = "_Layout";
+}
+
+<!-- banner-bootom-w3-agileits -->
+<div class="banner-bootom-w3-agileits">
+    <div class="container">
+        <div class="col-md-4 single-right-left ">
+            <div class="grid images_3_of_2">
+                <div class="flexslider">
+                    <input type="hidden" value="@Model.Id" id="productid" />
+                    <ul class="slides">
+                        @if (Model.ImageList.Count > 0)
+                        {
+                            foreach (var item in Model.ImageList)
+                            {
+                                <li data-thumb="@item.ImagePath">
+                                    <div class="thumb-image">
+                                        <img src="@item.ImagePath" data-imagezoom="true" class="img-responsive">
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 single-right-left simpleCart_shelfItem">
+            @await Html.PartialAsync("_ViewStart"
+            , new StrarRating { Startpoint = Model.AverageRating, isDisable = true, data_step = 0.1, size="xs" })
+
+            @Model.AverageRating Sao
+            @Model.ProductComments Bình luận
+            <div class="description">
+                <h5>Tùy chọn thanh toán và các khoản phí tại địa điểm của bạn</h5>
+                <form action="#" method="post">
+                    <input type="text" value="Nhập mã code" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter pincode';}" required="">
+                    <input type="submit" value="Kiểm tra">
+                </form>
+            </div>
+            <div class="color-quality">
+                <div class="color-quality-right">
+                    <h5>Size :</h5>
+                    <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
+                        <option value="null">XL</option>
+                        <option value="null">S</option>
+                        <option value="null">M</option>
+                        <option value="null">L</option>
+                    </select>
+                </div>
+            </div>
+            <div class="occasional">
+                <h5>Thương hiệu :</h5>
+                <div class="colr ert">
+                    <label class="radio"><input type="radio" name="radio" checked=""><i></i>@Model.BrandName</label>
+                </div>
+
+                <div class="clearfix"> </div>
+            </div>
+            <div class="occasion-cart">
+                @if (Model.ProductStock > 0)
+                {
+                    <a class="btn btn-success btn-addcart snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2" data-toggle="modal"
+                       data-target="#modal-addtocart" id="@Model.Id">Thêm vào giỏ</a>
+                }
+                else
+                {
+                    <a class="btn btn-success btn-addcart snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">Hết hàng</a>
+                }
+
+            </div>
+
+        </div>
+        <ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
+            <li class="share">Chia sẻ : </li>
+            <li>
+                <a href="#" class="facebook">
+                    <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                    <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="twitter">
+                    <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                    <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="instagram">
+                    <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                    <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="pinterest">
+                    <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+                    <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+                </a>
+            </li>
+        </ul>
+
+
+        <div class="clearfix"> </div>
+        <!-- /new_arrivals -->
+        @*<script src="~/js/brandcrsole.js"></script>
+        <link href="~/css/public/brandCursole.css" rel="stylesheet" />*@
+        <div class="responsive_tabs_agileits">
+            <div id="horizontalTab">
+                <ul class="resp-tabs-list">
+                    <li>Mô tả</li>
+                    <li>Đánh giá</li>
+                    <li>Thêm thông tin</li>
+                </ul>
+                <div class="resp-tabs-container">
+                    <!--/tab_one-->
+                    <div class="tab1">
+
+                        <div class="single_page_agile_its_w3ls">
+                            @Model.Description
+                        </div>
+                    </div>
+                    <!--//tab_one-->
+                    <div class="tab2">
+
+                        <div class="single_page_agile_its_w3ls">
+                            <div class="bootstrap-tab-text-grids">
+
+                                <div class="add-review">
+                                    <h4>Thêm một bình luận</h4>
+                                    @if (!Context.User.Identity.IsAuthenticated)
+                                    {
+                                        <span class="danger"><label class="text-danger">Cần Đăng nhập để viết đánh giá</label></span>
+                                    }
+                                    else
+                                    {
+
+                                        <form asp-action="AddComment" method="post">
+                                            @await Html.PartialAsync("ViewRating")
+                                            <textarea name="commentMessage" required=""></textarea>
+                                            <input type="hidden" name="pro" value="@Model.Id" />
+                                            <input type="submit" value="GỬI">
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab3">
+
+                        <div class="single_page_agile_its_w3ls">
+                            <h6>PayTR Virtual POS - iFrame API (Turkey)</h6>
+                            <p>Mở trang web của bạn để mua sắm với các lợi ích của PayTR. Nhận thanh toán của bạn một cách an toàn.</p>
+                            <p class="w3ls_para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w3_agile_latest_arrivals">
+            <div class="single_page_agile_its_w3ls" >
+                <h3 class="wthree_text_info">Bình luận <span>sản phẩm</span></h3>
+                <div class="commentbox-content" id="commentbox">
+                    <span class="danger"><label class="text-danger">Chưa có bình luận cho sản phẩm này</label></span>
+
+                </div>
+            </div>
+        </div>
+            <!-- //new_arrivals -->
+            <!--/slider_owl-->
+
+        <div class="w3_agile_latest_arrivals" id="productrelated">
+                
+                <!--//slider_owl-->
+            </div>
+        </div>
+    </div>
+<!--//single_page-->
+<!--/grids-->
+<div class="coupons">
+    <div class="coupons-grids text-center">
+        <div class="w3layouts_mail_grid">
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-truck" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>THANH TOÁN TRỰC TUYẾN</h3>
+                    <p>Hỗ trợ thanh toán với các thẻ tín dụng</p>
+                </div>
+            </div>
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-headphones" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>HỖ TRỢ 24/7</h3>
+                    <p>Tư vấn các sự lựa chọn tốt nhất</p>
+                </div>
+            </div>
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>HOÀN TIỀN LẠI</h3>
+                    <p>Hoàn tiền lại khi sản phẩm lỗi</p>
+                </div>
+            </div>
+            <div class="col-md-3 w3layouts_mail_grid_left">
+                <div class="w3layouts_mail_grid_left1 hvr-radial-out">
+                    <i class="fa fa-gift" aria-hidden="true"></i>
+                </div>
+                <div class="w3layouts_mail_grid_left2">
+                    <h3>QUÀ TẶNG HẤP DẪN</h3>
+                    <p>Ưu đãi khi mua sản phẩm thứ hai</p>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
+    </div>
+</div>
+<!--grids-->
+<!-- //js -->
+
+<script src="~/js/public/modernizr.custom.js"></script>
+<!-- Custom-JavaScript-File-Links -->
+<!-- cart-js -->
+<script src="~/js/public/minicart.min.js"></script>
+<script>
+    // Mini Cart
+    paypal.minicart.render({
+        action: '#'
+    });
+
+    if (~window.location.search.indexOf('reset=true')) {
+        paypal.minicart.reset();
+    }
+</script>
+
+<!-- //cart-js -->
+<!-- single -->
+<script src="~/js/public/imagezoom.js"></script>
+<!-- single -->
+<!-- script for responsive tabs -->
+<script src="~/js/public/easy-responsive-tabs.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true,   // 100% fit in a container
+            closed: 'accordion', // Start closed if in accordion view
+            activate: function (event) { // Callback function if tab is switched
+                var $tab = $(this);
+                var $info = $('#tabInfo');
+                var $name = $('span', $info);
+                $name.text($tab.text());
+                $info.show();
+            }
+        });
+        $('#verticalTab').easyResponsiveTabs({
+            type: 'vertical',
+            width: 'auto',
+            fit: true
+        });
+    });
+</script>
+<!-- FlexSlider -->
+<script src="~/js/public/jquery.flexslider.js"></script>
+<script>
+    // Can also be used with $(document).ready()
+    $(window).load(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            controlNav: "thumbnails"
+        });
+    });
+</script>
+<!-- //FlexSlider-->
+<!-- //script for responsive tabs -->
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="~/js/public/move-top.js"></script>
+<script type="text/javascript" src="~/js/public/jquery.easing.min.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+            $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+        });
+    });
+</script>
+<!-- here stars scrolling icon -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+            var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+            };
+        */
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+    });
+</script>
+<!-- //here ends scrolling icon -->
+@await Html.PartialAsync("_Modal", new BootstrapModel
+{
+    ID = "modal-addtocart",
+    AreaLabeledId = "modal-popUP-label",
+    Size = ModalSize.Medium,
+    Idcontent = "my-modal-cart"
+})
+
+@await Html.PartialAsync("_Modal", new BootstrapModel
+{
+    ID = "modal-popUP",
+                                            AreaLabeledId = "modal-popUP-label",
+                                            Size = ModalSize.Medium,
+                                            Idcontent = "my-modal-quickview"
+})
+

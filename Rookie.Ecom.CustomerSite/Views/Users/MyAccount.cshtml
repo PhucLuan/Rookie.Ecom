@@ -1,0 +1,198 @@
+﻿@{
+    Layout = null;
+}
+@*@model FashionShopMVC.Models.ApplicationUsers*@
+@*@model IEnumerable<FashionShopMVC.Models.Admin.Category>*@
+<title>MyAccount</title>
+
+<link rel='stylesheet' id='cartzilla-icons-css'
+      href='https://w3lcdn.w3layouts.com/wp-content/themes/W3layouts/assets/css/cartzilla-icons.css?ver=5.8'
+      type='text/css' media='screen' />
+<link rel='stylesheet' id='cartzilla-style-css'
+      href='https://w3lcdn.w3layouts.com/wp-content/themes/W3layouts/style.css?ver=5.8' type='text/css' media='all' />
+
+<link rel='stylesheet' id='cartzilla-fonts-css'
+      href='https://fonts.googleapis.com/css?family=Rubik:300,400,500,700&#038;display=swap' type='text/css'
+      media='all' />
+
+<link rel="icon" href="https://w3lcdn.w3layouts.com/wp-content/uploads/2020/11/cropped-w3layouts-logo-512-32x32.png"
+      sizes="32x32" />
+<link rel="icon"
+      href="https://w3lcdn.w3layouts.com/wp-content/uploads/2020/11/cropped-w3layouts-logo-512-192x192.png"
+      sizes="192x192" />
+<link rel="apple-touch-icon"
+      href="https://w3lcdn.w3layouts.com/wp-content/uploads/2020/11/cropped-w3layouts-logo-512-180x180.png" />
+
+<div id="page" class="hfeed site">
+    <main id="content" role="main" tabindex="-1" class="site-main">
+        <div id="primary" class="content-area">
+            <div id="post-8" class=" article__page post-8 page type-page status-publish hentry">
+                <div class="article__content article__content--page">
+                    <div class="page__content">
+                        <div class="woocommerce">
+                            <div class="page-title-overlap bg-secondary pt-4">
+                                <div class="container d-lg-flex justify-content-between py-2 py-lg-3">
+                                    <div class="order-lg-2 mb-3 mb-lg-0 pt-lg-2">
+                                        <nav class="woocommerce-breadcrumb" aria-label="breadcrumb">
+                                            <ol class="breadcrumb breadcrumb-light mt-n1">
+                                                <li class="breadcrumb-item d-flex mt-1">
+                                                    <a href="https://w3layouts.com">Home</a>
+                                                </li>
+                                                <li class="breadcrumb-item d-flex mt-1">My account</li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                    <div class="order-lg-1 pr-lg-4 text-center text-lg-left">
+                                        <h1 class="h3 text-dark mb-0">Dashboard</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container pb-5 mb-2 mb-md-3">
+                                <div class="row">
+                                    <aside class="col-lg-4 pt-4 pt-lg-0">
+                                        <div class="cz-sidebar-static rounded-lg box-shadow-lg px-0 pb-0 mb-5 mb-lg-0">
+                                            <div class="px-4 mb-4">
+                                                <div class="media align-items-center">
+                                                    <div class="img-thumbnail rounded-circle position-relative"
+                                                         style="width: 6.375rem;">
+                                                        <img alt='luan nguyen'
+                                                             src='https://secure.gravatar.com/avatar/e4f0d069c2a2b486c0fc0a35ec80283f?s=90&#038;r=g'
+                                                             srcset='https://secure.gravatar.com/avatar/e4f0d069c2a2b486c0fc0a35ec80283f?s=180&#038;r=g 2x'
+                                                             class='avatar avatar-90 photo rounded-circle'
+                                                             height='90' width='90'
+                                                             gurl="https://secure.gravatar.com/avatar/e4f0d069c2a2b486c0fc0a35ec80283f?s=90&r=g"
+                                                             loading='lazy' />
+                                                    </div>
+                                                    <div class="media-body pl-3">
+                                                        <h3 class="font-size-base mb-0">USERNAME</h3>
+                                                        <span class="text-accent font-size-sm">EMAIL</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <nav class="woocommerce-MyAccount-navigation">
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard
+                                                        is-active border-top mb-0">
+                                                        <a href="https://w3layouts.com/my-account/"
+                                                           class="nav-link-style d-flex align-items-center px-4 py-3">
+                                                            <i class="czi-home align-middle opacity-60 mr-2"></i>
+                                                            Dashboard
+                                                        </a>
+                                                    </li>
+                                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders
+                                                        border-top mb-0" id="orders">
+                                                        <div class="nav-link-style d-flex align-items-center px-4 py-3">
+                                                            <i class="czi-bag align-middle opacity-60 mr-2"></i>
+                                                            Orders <span class="font-size-sm text-muted ml-auto">0</span>
+                                                        </div>
+                                                    </li>
+                                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-address
+                                                        border-top mb-0">
+                                                        <a href="https://w3layouts.com/my-account/edit-address/"
+                                                           class="nav-link-style d-flex align-items-center px-4 py-3">
+                                                            <i class="czi-location align-middle opacity-60 mr-2"></i>
+                                                            Address
+                                                        </a>
+                                                    </li>
+                                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--payment-methods
+                                                        border-top mb-0">
+                                                        <a href="https://w3layouts.com/my-account/payment-methods/"
+                                                           class="nav-link-style d-flex align-items-center px-4 py-3">
+                                                            <i class="czi-card align-middle opacity-60 mr-2"></i>
+                                                            Payment methods
+                                                        </a>
+                                                    </li>
+                                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account
+                                                        border-top mb-0">
+                                                        <a href="https://w3layouts.com/my-account/edit-account/"
+                                                           class="nav-link-style d-flex align-items-center px-4 py-3">
+                                                            <i class="czi-user align-middle opacity-60 mr-2"></i>
+                                                            Account details
+                                                        </a>
+                                                    </li>
+                                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--communication-preferences
+                                                        border-top mb-0">
+                                                        <a href="https://w3layouts.com/my-account/communication-preferences/"
+                                                           class="nav-link-style d-flex align-items-center px-4 py-3">
+                                                            Communication
+                                                        </a>
+                                                    </li>
+                                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout border-top d-lg-none mb-0">
+                                                        <a href="https://w3layouts.com/my-account/customer-logout/?_wpnonce=d103f385c4"
+                                                           class="nav-link-style d-block px-4 py-3">
+                                                            <i class="czi-sign-out align-middle opacity-60 mr-2"></i>
+                                                            Logout
+                                                        </a>
+                                                    </li>
+                                                    <li class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--wpf-delete-account border-top mb-0">
+                                                        <a href="https://w3layouts.com/my-account/wpf-delete-account/"
+                                                           class="nav-link-style d-flex align-items-center px-4 py-3">
+                                                            Delete Account
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+
+                                        </div>
+                                    </aside>
+                                    <section class="col-lg-8">
+                                        <div class="woocommerce-MyAccount-content">
+                                            <div class="d-flex justify-content-between align-items-center pt-lg-2 pb-4 pb-lg-5 mb-lg-3">
+                                                <h6 class="font-size-base text-dark mb-0">Hello, luan nguyen</h6>
+                                                <a class="btn btn-primary btn-sm d-none d-lg-inline-block"
+                                                   href="https://w3layouts.com/my-account/customer-logout/?_wpnonce=d103f385c4">
+                                                    <i class="czi-sign-out mr-2"></i>
+                                                    Logout
+                                                </a>
+                                            </div>
+
+                                            <div class="card text-center py-4 mb-4" id="mycontent">
+                                                <div class="card-body">
+                                                    <i class="czi-home text-muted h2 font-weight-normal opacity-60 mb-4"></i>
+                                                    <h5 class="pb-2">From your account dashboard you can:</h5>
+                                                    <a href="https://w3layouts.com/my-account/orders/"
+                                                       class="btn btn-outline-primary btn-sm m-2">View orders</a>
+                                                    <a href="https://w3layouts.com/my-account/edit-address/"
+                                                       class="btn btn-outline-primary btn-sm m-2">
+                                                        Manage
+                                                        addresses
+                                                    </a>
+                                                    <a href="https://w3layouts.com/my-account/edit-account/"
+                                                       class="btn btn-outline-primary btn-sm m-2">
+                                                        Edit account
+                                                        details
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- .entry-content -->
+            </div><!-- #post-## -->
+        </div><!-- #primary -->
+    </main>
+</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".woocommerce-MyAccount-navigation-link").click(function () {
+            //lets say entering data in textbox named txtname and clicking on button named btnadd
+            //var data = $("#txtname").val();
+            $.ajax({
+                url: "MyListOrder",
+                dataType: "json",
+                success: function (result) {
+                    console.log(result)
+                    $('#mycontent').empty();
+                    $('#mycontent').append(result);
+                }
+            });
+        });
+    });
+</script>

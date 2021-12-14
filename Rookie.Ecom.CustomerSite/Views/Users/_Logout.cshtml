@@ -1,0 +1,10 @@
+﻿
+<form asp-controller="Users" asp-action="LogOut" method="post" role="form">
+    @await Html.PartialAsync("_ModalHeader", new ModalHeader { Heading = "Logout" })
+
+    <div class="modal-body form-horizontal">
+        Bạn có muốn đăng xuất?
+    </div>
+
+    @await Html.PartialAsync("_ModalFooter", new ModalFooter { SubmitButtonText = "Logout",})
+</form>

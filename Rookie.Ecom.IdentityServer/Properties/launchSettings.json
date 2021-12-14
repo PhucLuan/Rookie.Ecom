@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "SelfHost": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "EmailSenderApi": "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",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:5000"
+    }
+  }
+}

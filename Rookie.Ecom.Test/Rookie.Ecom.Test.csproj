@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="1.3.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rookie.Ecom.DataAccessor\Rookie.Ecom.DataAccessor.csproj" />
+    <ProjectReference Include="..\Rookie.Ecom.Business\Rookie.Ecom.Business.csproj" />
+    <ProjectReference Include="..\Rookie.Ecom.Contracts\Rookie.Ecom.Contracts.csproj" />
+    <ProjectReference Include="..\Rookie.Ecom.CustomerSite\Rookie.Ecom.CustomerSite.csproj" />
+    <ProjectReference Include="..\Rookie.Ecom.WebApi\Rookie.Ecom.WebApi.csproj" />
+  </ItemGroup>
+
+</Project>

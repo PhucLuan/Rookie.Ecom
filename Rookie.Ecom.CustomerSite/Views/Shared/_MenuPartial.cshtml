@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Rookie.Ecom.DataAccessor.Models.Admin.Category>
+
+@foreach (var menuitem in Model)
+{
+    <ul>
+        <li>
+            <h1>@menuitem.Name</h1>
+            @{
+                Html.RenderPartial("_MenuPartial", menuitem.CategoriesList);
+            }
+        </li>
+    </ul>
+}
